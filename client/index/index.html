@@ -1,0 +1,14 @@
+<template name="Index">
+  <div class="boxes">
+    {{#each box in data}}
+      <div class="box">
+        <div class="name">
+          {{box.name}}
+        </div>
+        <div class="value">
+          {{box.value}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</template>
