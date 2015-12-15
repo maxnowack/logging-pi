@@ -15,6 +15,7 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('mongo');
   api.use('http');
+  api.use('underscore');
   api.use('percolate:synced-cron@1.3.0');
   api.addFiles('logger.js', 'server');
   api.export('LibratoLogger', 'server');

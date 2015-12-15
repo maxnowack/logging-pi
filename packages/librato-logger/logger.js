@@ -39,7 +39,9 @@ LibratoLogger = class LibratoLogger {
   }
 
   log(name, value, time) {
-    time = time || new Date()
+    time = time || new Date();
+    if(!_.isNumber(value)) value = 0;
+    value = value or 0;
     console.log('logging ' + name + ': ' + value);
     cacheCollection.insert({name, value, time});
     latestCollection.upsert({name}, {$set: {name, value, time}});
