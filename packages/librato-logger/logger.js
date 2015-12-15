@@ -8,7 +8,7 @@ LibratoLogger = class LibratoLogger {
     self._auth = email + ':' + key;
 
     SyncedCron.add({
-      name: 'LibratorLogger',
+      name: 'LibratoLogger',
       schedule: (parser) => {
         return parser.text('every 1 mins');
       },
