@@ -15,4 +15,8 @@ measureSpeed = new Measurement(() => {
     libratoLogger.log('speedtest.online', 0, time)
   }))
 })
-measureSpeed.start()
+Meteor.startup(function() {
+  Meteor.defer(function() {
+    measureSpeed.start()
+  })
+})
