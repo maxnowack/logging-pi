@@ -1,6 +1,6 @@
 const speedTest = Meteor.npmRequire('speedtest-net');
 
-measureSpeed = new Measurement(() => {
+let measureSpeed = function() {
   let test = speedTest({maxTime: 5000})
   let time = new Date
   test.on('data', Meteor.bindEnvironment((data) => {
@@ -14,9 +14,9 @@ measureSpeed = new Measurement(() => {
     libratoLogger.log('speedtest.upload', 0, time)
     libratoLogger.log('speedtest.online', 0, time)
   }))
-})
+}
 Meteor.startup(function() {
   Meteor.defer(function() {
-    measureSpeed.start()
+    Meteor.setInterval(measureSpeed, 60000)
   })
 })

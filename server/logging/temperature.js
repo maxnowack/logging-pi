@@ -4,13 +4,13 @@ if(!sensor) {
   console.error('failed to init sensor')
 }
 
-measureTemperature = new Measurement(() => { 
+let measureTemperature = function() { 
   let values = sensorLib.read()
   libratoLogger.log('home.humidity', values.humidity)
   libratoLogger.log('home.temperature', values.temperature)
-}, 30000)
+}
 Meteor.startup(function() {
   Meteor.setTimeout(function() {
-    measureTemperature.start()
+    Meteor.setInterval(measureTemperature, 30000)
   }, 5000)
 })
