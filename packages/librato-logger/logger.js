@@ -32,7 +32,7 @@ LibratoLogger = class LibratoLogger {
         auth: self._auth,
         data: json,
       }, (error, response) => {
-        if(error) return console.log(response.statusCode, error);
+        if(error) console.error(error);
         cacheCollection.update(item._id, {$set: {sentAt: new Date()}})
       })
     })
@@ -42,7 +42,6 @@ LibratoLogger = class LibratoLogger {
     time = time || new Date();
     if(!_.isNumber(value)) value = 0;
     value = value || 0;
-    console.log('logging ' + name + ': ' + value);
     cacheCollection.insert({name, value, time});
     latestCollection.upsert({name}, {$set: {name, value, time}});
   }
