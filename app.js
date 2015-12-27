@@ -3,6 +3,7 @@ var speedtest = require('./logging/speedtest');
 var temperature = require('./logging/temperature');
 
 var startLogging = function(fn, interval) {
+  fn();
   setInterval(function(){
     try {
       fn()
@@ -16,7 +17,7 @@ startLogging(function(){
   speedtest(function(id, value, time){
     librato(id, value, time);
   });
-}, 1000 * 60 * 2)
+}, 1000 * 60 * 1)
 
 startLogging(function(){
   temperature(function(id, value, time){
