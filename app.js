@@ -1,5 +1,6 @@
 var librato = require('./librato');
 var speedtest = require('./logging/speedtest');
+var temperature = require('./logging/temperature');
 
 var startLogging = function(fn, interval) {
   setInterval(function(){
@@ -16,3 +17,9 @@ startLogging(function(){
     librato(id, value, time);
   });
 }, 1000 * 60 * 2)
+
+startLogging(function(){
+  temperature(function(id, value, time){
+    librato(id, value, time);
+  });
+}, 1000 * 60 * 0.5)
